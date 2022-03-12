@@ -1,7 +1,11 @@
 .popup {
-  display: flex;
-  height: 330px;
-  width: 430px;
-  border: 1px solid #000000;
-  background-color: #FFFFFF;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  display: none;
 }

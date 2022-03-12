@@ -6,4 +6,10 @@
   background-repeat: no-repeat;
   background-position: center;
   border: solid 1px #FFFFFF;
+  cursor: pointer;
+  transition: opacity 0.2s linear;
+}
+
+.profile__add-button:hover {
+  opacity: 0.5;
 }
