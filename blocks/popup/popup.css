@@ -1,0 +1,7 @@
+.popup {
+  display: flex;
+  height: 330px;
+  width: 430px;
+  border: 1px solid #000000;
+  background-color: #FFFFFF;
+}
