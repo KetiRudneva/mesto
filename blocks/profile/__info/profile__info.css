@@ -2,5 +2,6 @@
   color: #FFFFFF;
   display: flex;
   flex-direction: column;
-  margin-left: 30px;
+  margin-left: 1.875rem;
+  margin-right: 15.25rem;
 }

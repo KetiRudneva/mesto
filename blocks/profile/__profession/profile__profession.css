@@ -3,4 +3,9 @@
   font-weight: 400;
   font-size: 1.125rem;
   line-height: 1.375rem;
+  margin: 0;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 20.5rem;
 }
