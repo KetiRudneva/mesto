@@ -13,7 +13,7 @@
 - Flexbox
 - Grid Layout
 - БЭМ nested
-- Javascript
+- JS
 - Адаптивная верстка и отзывчивый дизайн
 
 ## Стек:
