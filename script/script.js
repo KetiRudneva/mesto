@@ -11,7 +11,6 @@ let job = document.querySelector(".profile__profession");
 
 function popupOpen() {
   popup.classList.add("popup_opened");
-  console.log("dddd", formElement);
 }
 
 function popupClose() {
