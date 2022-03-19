@@ -4,7 +4,9 @@
   align-items: center;
   background-color: #fff;
   color: black;
-  padding: 25px 15px 31px 21px;
+  padding: 25px 15px 25px 21px;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
 }
+
+/*скоректировала нижний отступ, но есть непонимание почему он должен быть 25px. Прикладываю скриншоты из Figma(в папке images), на которых видно, что нижний отступ равен 31px на всех экранах.*/
