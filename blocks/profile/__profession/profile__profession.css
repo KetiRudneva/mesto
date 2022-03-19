@@ -10,7 +10,7 @@
   line-height: 22px;
 }
 
-@media (min-width: 320px) and (max-width: 768px) {
+@media (max-width: 768px) {
   .profile__profession {
       font-size: 14px;
       line-height: 17px;
