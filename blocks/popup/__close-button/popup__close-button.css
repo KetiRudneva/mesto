@@ -2,9 +2,6 @@
   position: absolute;
   right: -40px;
   top: -40px;
-  background-image: url(../../../images/close.svg);
-  background-position: center;
-  background-repeat: no-repeat;
   background-color: #000000;
   cursor: pointer;
   transition: opacity 0.2s linear;
@@ -16,6 +13,24 @@
 
 .popup__close-button:hover {
   opacity: 0.6;
+}
+
+.popup__close-button::before {
+  position: absolute;
+  content: '';
+  height: 30px;
+  border: 2px solid #FFFFFF;
+  top: 0;
+  transform: rotate(45deg);
+}
+
+.popup__close-button::after {
+  position: absolute;
+  content: '';
+  height: 30px;
+  border: 2px solid #FFFFFF;
+  top: 0;
+  transform: rotate(-45deg);
 }
 
 @media (max-width: 650px) {
