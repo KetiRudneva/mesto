@@ -9,3 +9,9 @@
   text-overflow: ellipsis;
   max-width: 12.5rem;
 }
+
+@media (max-width: 650px) {
+  .elements__title {
+    max-width: 17rem;
+  }
+}
