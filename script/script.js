@@ -35,6 +35,7 @@ function addNewCard(data) {
   const cardName = cardElement.querySelector(".elements__title");
   const cardImage = cardElement.querySelector(".elements__image");
   const likeButton = cardElement.querySelector(".elements__like");
+  const deleteButton = cardElement.querySelector(".elements__delete");
 
   cardName.textContent = data.name;
   cardImage.src = data.link;
@@ -42,6 +43,10 @@ function addNewCard(data) {
 
   likeButton.addEventListener("click", () => {
     likeButton.classList.toggle("elements__like-active");
+  });
+
+  deleteButton.addEventListener("click", () => {
+    cardElement.remove();
   });
 
   return cardElement;
