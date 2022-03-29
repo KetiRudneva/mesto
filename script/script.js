@@ -51,12 +51,14 @@ initialCards.reverse().forEach((cardsContainer) => {
   renderCard(cardsContainer);
 });
 
+// popup edit profile
 let formProfile = document.querySelector(".popup__form-profile");
 let nameInput = document.querySelector(".popup__text-name");
 let jobInput = document.querySelector(".popup__text-job");
 let profileName = document.querySelector(".profile__name");
 let job = document.querySelector(".profile__profession");
 
+//popup add new card
 let formCard = document.querySelector(".popup__form-сard");
 let titleInput = document.querySelector(".popup__text-title");
 let linkInput = document.querySelector(".popup__text-link");
@@ -74,13 +76,18 @@ let closePopupAdd = document.querySelector(".popup__close-add");
 let submitPopupEdit = document.querySelector(".popup__submit-edit");
 let submitPopupAdd = document.querySelector(".popup__submit-add");
 
-function popupOpen(popup) {
+const popupOpen = (popup) => {
   popup.classList.add("popup_opened");
-}
+};
 
-function popupClose(popup) {
+const popupClose = (popup) => {
   popup.classList.remove("popup_opened");
-}
+};
+
+const renderData = (data) => {
+  const cardElement = addNewCard(data);
+  cardsContainer.prepend(cardElement);
+};
 
 function handleProfileEdit(evt) {
   evt.preventDefault();
@@ -91,11 +98,6 @@ function handleProfileFormEdit(evt) {
   job.textContent = jobInput.value;
   profileName.textContent = nameInput.value;
   popupClose(popupEdit);
-}
-
-function renderData(data) {
-  const cardElement = addNewCard(data);
-  cardsContainer.prepend(cardElement);
 }
 
 function handleCardFormAdd(evt) {
