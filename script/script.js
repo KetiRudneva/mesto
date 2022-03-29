@@ -34,10 +34,15 @@ function addNewCard(data) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardName = cardElement.querySelector(".elements__title");
   const cardImage = cardElement.querySelector(".elements__image");
+  const likeButton = cardElement.querySelector(".elements__like");
 
   cardName.textContent = data.name;
   cardImage.src = data.link;
   cardImage.alt = data.name;
+
+  likeButton.addEventListener("click", () => {
+    likeButton.classList.toggle("elements__like-active");
+  });
 
   return cardElement;
 }
