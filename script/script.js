@@ -25,11 +25,11 @@ const closePopupShow = document.querySelector(".popup__close-show");
 const submitPopupEdit = document.querySelector(".popup__submit-edit");
 const submitPopupAdd = document.querySelector(".popup__submit-add");
 
-const popupOpen = (popup) => {
+const openPopup = (popup) => {
   popup.classList.add("popup_opened");
 };
 
-const popupClose = (popup) => {
+const closePopup = (popup) => {
   popup.classList.remove("popup_opened");
 };
 
@@ -46,7 +46,7 @@ function handleProfileFormEdit(evt) {
   evt.preventDefault();
   job.textContent = jobInput.value;
   profileName.textContent = nameInput.value;
-  popupClose(popupEdit);
+  closePopup(popupEdit);
 }
 
 function handleCardFormAdd(evt) {
@@ -56,29 +56,29 @@ function handleCardFormAdd(evt) {
     link: linkInput.value,
   };
   renderData(data);
-  popupClose(popupAdd);
+  closePopup(popupAdd);
   titleInput.value = "";
   linkInput.value = "";
 }
 
 //listeners
 editButton.addEventListener("click", () => {
-  popupOpen(popupEdit);
+  openPopup(popupEdit);
 });
 addCard.addEventListener("click", () => {
-  popupOpen(popupAdd);
+  openPopup(popupAdd);
 });
 
 closePopupAdd.addEventListener("click", () => {
-  popupClose(popupAdd);
+  closePopup(popupAdd);
 });
 
 closePopupEdit.addEventListener("click", () => {
-  popupClose(popupEdit);
+  closePopup(popupEdit);
 });
 
 closePopupShow.addEventListener("click", () => {
-  popupClose(popupShow);
+  closePopup(popupShow);
 });
 
 formProfile.addEventListener("submit", handleProfileFormEdit);
@@ -122,7 +122,7 @@ function addNewCard(data) {
   const cardImage = cardElement.querySelector(".elements__image");
   const likeButton = cardElement.querySelector(".elements__like");
   const deleteButton = cardElement.querySelector(".elements__delete");
-  const popupShowImage = cardElement.querySelector(".elements__image");
+  const showPopupImage = cardElement.querySelector(".elements__image");
 
   const imagePopup = popupShow.querySelector(".popup__fullscreen-image");
   const imageDescription = popupShow.querySelector(".popup__description");
@@ -139,11 +139,11 @@ function addNewCard(data) {
     cardElement.remove();
   });
 
-  popupShowImage.addEventListener("click", () => {
+  showPopupImage.addEventListener("click", () => {
     imagePopup.alt = data.name;
     imagePopup.src = data.link;
     imageDescription.textContent = data.name;
-    popupOpen(popupShow);
+    openPopup(popupShow);
   });
 
   return cardElement;
