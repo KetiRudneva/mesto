@@ -11,7 +11,6 @@ const titleInput = document.querySelector(".popup__text-title");
 const linkInput = document.querySelector(".popup__text-link");
 
 //popups
-const popup = document.querySelector(".popup");
 const popupEdit = document.querySelector(".popup_edit");
 const popupAdd = document.querySelector(".popup_add");
 const popupShow = document.querySelector(".popup_show");
@@ -149,11 +148,6 @@ function addNewCard(data) {
   return cardElement;
 }
 
-function renderCard(data) {
-  const cardElement = addNewCard(data);
-  cardsContainer.prepend(cardElement);
-}
-
 initialCards.reverse().forEach((cardsContainer) => {
-  renderCard(cardsContainer);
+  renderData(cardsContainer);
 });
