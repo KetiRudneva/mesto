@@ -1,7 +1,5 @@
 .popup_opened {
   display: flex;
-  visibility: visible;
-  opacity: 1;
   animation: ani .5s forwards;
 }
 

@@ -7,8 +7,11 @@
   width: 100%;
   justify-content: center;
   align-items: center;
+  animation: ani .5s forwards;
   display: none;
-  visibility: hidden;
-  transition: visibility 0s, .1s ease-in;
-  opacity: 0;
+}
+
+@keyframes ani {
+  0% {opacity: 1;}
+  100% {opacity: 0;}
 }
