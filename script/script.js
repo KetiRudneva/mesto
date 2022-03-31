@@ -56,8 +56,7 @@ function handleCardFormAdd(evt) {
   };
   renderData(data);
   closePopup(popupAdd);
-  titleInput.value = "";
-  linkInput.value = "";
+  formCard.reset();
 }
 
 //listeners
