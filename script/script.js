@@ -6,7 +6,7 @@ const profileName = document.querySelector(".profile__name");
 const job = document.querySelector(".profile__profession");
 
 //popup add new card
-const formCard = document.querySelector(".popup__form-сard");
+const formCard = document.querySelector(".popup__form-add");
 const titleInput = document.querySelector(".popup__text-title");
 const linkInput = document.querySelector(".popup__text-link");
 
