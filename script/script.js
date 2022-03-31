@@ -24,6 +24,10 @@ const closePopupShow = document.querySelector(".popup__close-show");
 const submitPopupEdit = document.querySelector(".popup__submit-edit");
 const submitPopupAdd = document.querySelector(".popup__submit-add");
 
+//popup show
+const imagePopup = popupShow.querySelector(".popup__fullscreen-image");
+const imageDescription = popupShow.querySelector(".popup__description");
+
 const openPopup = (popup) => {
   popup.classList.add("popup_opened");
 };
@@ -121,9 +125,6 @@ function addNewCard(data) {
   const likeButton = cardElement.querySelector(".elements__like");
   const deleteButton = cardElement.querySelector(".elements__delete");
   const showPopupImage = cardElement.querySelector(".elements__image");
-
-  const imagePopup = popupShow.querySelector(".popup__fullscreen-image");
-  const imageDescription = popupShow.querySelector(".popup__description");
 
   cardName.textContent = data.name;
   cardImage.src = data.link;
