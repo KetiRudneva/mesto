@@ -56,13 +56,21 @@
     </div>
   </div>
 
+  <div class="popup popup_show">
+    <div class="popup__fullscreen">
+      <button type="button" class="popup__close-button popup__close-show"></button>
+      <img class="popup__fullscreen-image" src="" alt="" />
+      <p class="popup__description"></p>
+    </div>
+  </div>
+
   <!-- Card template -->
   <template class="card-template">
     <li class="elements__item">
-      <img class="elements__image" src="" alt="" />
+        <button type="button" class="elements__delete"></button>
+        <img class="elements__image" src="" alt="" />
       <div class="elements__info">
         <h2 class="elements__title"></h2>
-        <div type="button" class="elements__delete"></div>
         <button type="button" class="elements__like"></button>
       </div>
     </li>
