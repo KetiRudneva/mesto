@@ -1,29 +1,29 @@
 // popup edit profile
-let formProfile = document.querySelector(".popup__form-profile");
-let nameInput = document.querySelector(".popup__text-name");
-let jobInput = document.querySelector(".popup__text-job");
-let profileName = document.querySelector(".profile__name");
-let job = document.querySelector(".profile__profession");
+const formProfile = document.querySelector(".popup__form-profile");
+const nameInput = document.querySelector(".popup__text-name");
+const jobInput = document.querySelector(".popup__text-job");
+const profileName = document.querySelector(".profile__name");
+const job = document.querySelector(".profile__profession");
 
 //popup add new card
-let formCard = document.querySelector(".popup__form-сard");
-let titleInput = document.querySelector(".popup__text-title");
-let linkInput = document.querySelector(".popup__text-link");
+const formCard = document.querySelector(".popup__form-сard");
+const titleInput = document.querySelector(".popup__text-title");
+const linkInput = document.querySelector(".popup__text-link");
 
 //popups
-let popup = document.querySelector(".popup");
-let popupEdit = document.querySelector(".popup_edit");
-let popupAdd = document.querySelector(".popup_add");
-let popupShow = document.querySelector(".popup_show");
+const popup = document.querySelector(".popup");
+const popupEdit = document.querySelector(".popup_edit");
+const popupAdd = document.querySelector(".popup_add");
+const popupShow = document.querySelector(".popup_show");
 
 // popups buttons
-let editButton = document.querySelector(".profile__edit-button");
-let addCard = document.querySelector(".profile__add-button");
-let closePopupEdit = document.querySelector(".popup__close-edit");
-let closePopupAdd = document.querySelector(".popup__close-add");
-let closePopupShow = document.querySelector(".popup__close-show");
-let submitPopupEdit = document.querySelector(".popup__submit-edit");
-let submitPopupAdd = document.querySelector(".popup__submit-add");
+const editButton = document.querySelector(".profile__edit-button");
+const addCard = document.querySelector(".profile__add-button");
+const closePopupEdit = document.querySelector(".popup__close-edit");
+const closePopupAdd = document.querySelector(".popup__close-add");
+const closePopupShow = document.querySelector(".popup__close-show");
+const submitPopupEdit = document.querySelector(".popup__submit-edit");
+const submitPopupAdd = document.querySelector(".popup__submit-add");
 
 const popupOpen = (popup) => {
   popup.classList.add("popup_opened");
@@ -111,8 +111,8 @@ const initialCards = [
   },
 ];
 
-let cardsContainer = document.querySelector(".elements");
-let cardTemplate = document
+const cardsContainer = document.querySelector(".elements");
+const cardTemplate = document
   .querySelector(".card-template")
   .content.querySelector(".elements__item");
 
