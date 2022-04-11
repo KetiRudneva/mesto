@@ -14,6 +14,7 @@ const linkInput = document.querySelector(".popup__text-link");
 const popupEdit = document.querySelector(".popup_edit");
 const popupAdd = document.querySelector(".popup_add");
 const popupShow = document.querySelector(".popup_show");
+const popupAll = document.querySelectorAll(".popup");
 
 // popups buttons
 const editButton = document.querySelector(".profile__edit-button");
@@ -34,7 +35,6 @@ const openPopup = (popup) => {
 
 const closePopup = (popup) => {
   popup.classList.remove("popup_opened");
-  console.log("2");
   document.addEventListener("keydown", handleClosePopup);
 };
 
@@ -68,7 +68,6 @@ function handleCardFormAdd(evt) {
 function handleClosePopup(evt) {
   if (evt.key === "Escape") {
     const popupActive = document.querySelector(".popup_opened");
-    console.log("1", evt.key, popupActive);
     closePopup(popupActive);
   }
 }
@@ -91,6 +90,19 @@ closePopupEdit.addEventListener("click", () => {
 
 closePopupShow.addEventListener("click", () => {
   closePopup(popupShow);
+});
+
+popupAll.forEach((popup) => {
+  popup.addEventListener("mousedown", (evt) => {
+    if (
+      evt.target === evt.currentTarget ||
+      evt.target.classList.contains("popup__close-button")
+    ) {
+      closePopup(popup);
+      console.log(evt.target);
+      console.log("1", evt.currentTarget);
+    }
+  });
 });
 
 formProfile.addEventListener("submit", handleProfileFormEdit);
