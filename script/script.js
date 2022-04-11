@@ -36,6 +36,7 @@ const openPopup = (popup) => {
 const closePopup = (popup) => {
   popup.classList.remove("popup_opened");
   document.addEventListener("keydown", handleClosePopup);
+  formCard.reset();
 };
 
 const renderData = (data) => {
