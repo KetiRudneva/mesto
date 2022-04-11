@@ -34,6 +34,8 @@ const openPopup = (popup) => {
 
 const closePopup = (popup) => {
   popup.classList.remove("popup_opened");
+  console.log("2");
+  document.addEventListener("keydown", handleClosePopup);
 };
 
 const renderData = (data) => {
@@ -61,6 +63,14 @@ function handleCardFormAdd(evt) {
   renderData(data);
   closePopup(popupAdd);
   formCard.reset();
+}
+
+function handleClosePopup(evt) {
+  if (evt.key === "Escape") {
+    const popupActive = document.querySelector(".popup_opened");
+    console.log("1", evt.key, popupActive);
+    closePopup(popupActive);
+  }
 }
 
 //listeners
