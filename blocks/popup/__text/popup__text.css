@@ -2,7 +2,3 @@
   border: none;
   border-bottom: 1px solid #C4C4C4;
 }
-
-.popup__text:invalid {
-  border-bottom: 1px solid #FF0000;
-}
