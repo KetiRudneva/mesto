@@ -31,23 +31,18 @@ const imageDescription = popupShow.querySelector(".popup__description");
 
 const openPopup = (popup) => {
   popup.classList.add("popup_opened");
+  document.addEventListener("keydown", hadnleEscUp);
 };
 
 const closePopup = (popup) => {
   popup.classList.remove("popup_opened");
-  document.addEventListener("keydown", handleClosePopup);
-  formCard.reset();
-  formCard.querySelector(".popup__text-error").textContent = "";
+  document.removeEventListener("keydown", hadnleEscUp);
 };
 
 const renderData = (data) => {
   const cardElement = addNewCard(data);
   cardsContainer.prepend(cardElement);
 };
-
-function handleProfileEdit(evt) {
-  evt.preventDefault();
-}
 
 function handleProfileFormEdit(evt) {
   evt.preventDefault();
@@ -67,7 +62,7 @@ function handleCardFormAdd(evt) {
   formCard.reset();
 }
 
-function handleClosePopup(evt) {
+function closeByEscape(evt) {
   if (evt.key === "Escape") {
     const popupActive = document.querySelector(".popup_opened");
     closePopup(popupActive);
@@ -101,8 +96,6 @@ popupAll.forEach((popup) => {
       evt.target.classList.contains("popup__close-button")
     ) {
       closePopup(popup);
-      console.log(evt.target);
-      console.log("1", evt.currentTarget);
     }
   });
 });
