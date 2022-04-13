@@ -69,11 +69,35 @@ function closeByEscape(evt) {
   }
 }
 
+function deleteErrors(popup) {
+  popupErrors = popup.querySelectorAll(".popup__text-error");
+  popupErrorsActive = popup.querySelectorAll(".popup__text-error_active");
+
+  popupErrors.forEach((inputElement) => {
+    inputElement.classList.remove("popup__text-error");
+    inputElement.textContent = "";
+  });
+
+  popupErrorsActive.forEach((formError) => {
+    formError.classList.remove("popup__text-error_active");
+  });
+}
+
 //listeners
 editButton.addEventListener("click", () => {
+  nameInput.value = profileName.textContent;
+  jobInput.value = job.textContent;
+  deleteErrors(popupEdit);
+  submitPopupEdit.removeAttribute("disabled");
+  submitPopupEdit.classList.remove("popup__submit-button_inactive");
   openPopup(popupEdit);
 });
+
 addCard.addEventListener("click", () => {
+  formCard.reset();
+  submitPopupAdd.setAttribute("disabled", true);
+  submitPopupAdd.classList.add("popup__submit-button_inactive");
+  deleteErrors(popupAdd);
   openPopup(popupAdd);
 });
 
