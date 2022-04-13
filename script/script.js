@@ -31,12 +31,12 @@ const imageDescription = popupShow.querySelector(".popup__description");
 
 const openPopup = (popup) => {
   popup.classList.add("popup_opened");
-  document.addEventListener("keydown", hadnleEscUp);
+  document.addEventListener("keydown", closeByEscape);
 };
 
 const closePopup = (popup) => {
   popup.classList.remove("popup_opened");
-  document.removeEventListener("keydown", hadnleEscUp);
+  document.removeEventListener("keydown", closeByEscape);
 };
 
 const renderData = (data) => {
