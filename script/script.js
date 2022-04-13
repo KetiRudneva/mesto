@@ -37,6 +37,7 @@ const closePopup = (popup) => {
   popup.classList.remove("popup_opened");
   document.addEventListener("keydown", handleClosePopup);
   formCard.reset();
+  formCard.querySelector(".popup__text-error").textContent = "";
 };
 
 const renderData = (data) => {

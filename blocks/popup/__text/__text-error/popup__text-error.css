@@ -1,5 +1,5 @@
 .popup__text-error {
-  max-width: 330px;
+  max-width: 340px;
   font-style: normal;
   font-weight: 400;
   font-size: 0.75rem;
@@ -7,4 +7,7 @@
   line-height: 0.9rem;
   margin-top: 5px;
   padding: 0;
+  position: absolute;
+  top: 33px;
+  z-index: 1;
 }

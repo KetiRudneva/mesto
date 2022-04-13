@@ -38,12 +38,14 @@
 @import url(../blocks/popup/__text/__text-title/popup__text-title.css);
 @import url(../blocks/popup/__text/__text-link/popup__text-link.css);
 @import url(../blocks/popup/__text/__text-error/popup__text-error.css);
-@import url(../blocks/popup/__text/__text-error/_active/popup__text_error_active.css);
+@import url(../blocks/popup/__text/__text-error/_active/popup__text-error_active.css);
 @import url(../blocks/popup/__title/popup__title.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__fullscreen/popup__fullscreen.css);
 @import url(../blocks/popup/__fullscreen/_image/popup__fullscreen-image.css);
 @import url(../blocks/popup/__description/popup__description.css);
+@import url(../blocks/popup/__field/popup__field.css);
+@import url(../blocks/popup/__fieldset/popup__fieldset.css);
 @import url(../blocks/popup/__close-show/popup__close-show.css);
 
 
