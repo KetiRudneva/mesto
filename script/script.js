@@ -1,3 +1,5 @@
+import { initialCards } from "./initialCards.js";
+
 // popup edit profile
 const formProfile = document.querySelector(".popup__form-profile");
 const nameInput = document.querySelector(".popup__text-name");
@@ -126,33 +128,6 @@ popupAll.forEach((popup) => {
 
 formProfile.addEventListener("submit", handleProfileFormEdit);
 formCard.addEventListener("submit", handleCardFormAdd);
-
-const initialCards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
 
 const cardsContainer = document.querySelector(".elements");
 const cardTemplate = document
