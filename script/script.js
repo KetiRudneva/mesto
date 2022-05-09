@@ -1,4 +1,8 @@
 import { initialCards } from "./initialCards.js";
+import Card from "./Card.js";
+
+// cards
+const cardsContainer = document.querySelector(".elements");
 
 // popup edit profile
 const formProfile = document.querySelector(".popup__form-profile");
@@ -41,10 +45,23 @@ const closePopup = (popup) => {
   document.removeEventListener("keydown", closeByEscape);
 };
 
+// ________________________________________________________________
+
+// const renderData = (data) => {
+//   const cardElement = addNewCard(data);
+//   cardsContainer.prepend(cardElement);
+// };
+
 const renderData = (data) => {
-  const cardElement = addNewCard(data);
+  const card = new Card(data, ".card-template");
+  const cardElement = card.generateCard();
+
   cardsContainer.prepend(cardElement);
 };
+
+initialCards.reverse().forEach((card) => renderData(card));
+
+// ________________________________________________________________
 
 function handleProfileFormEdit(evt) {
   evt.preventDefault();
@@ -59,7 +76,6 @@ function handleCardFormAdd(evt) {
     name: titleInput.value,
     link: linkInput.value,
   };
-  renderData(data);
   closePopup(popupAdd);
   formCard.reset();
 }
@@ -129,41 +145,4 @@ popupAll.forEach((popup) => {
 formProfile.addEventListener("submit", handleProfileFormEdit);
 formCard.addEventListener("submit", handleCardFormAdd);
 
-const cardsContainer = document.querySelector(".elements");
-const cardTemplate = document
-  .querySelector(".card-template")
-  .content.querySelector(".elements__item");
-
-function addNewCard(data) {
-  const cardElement = cardTemplate.cloneNode(true);
-  const cardName = cardElement.querySelector(".elements__title");
-  const cardImage = cardElement.querySelector(".elements__image");
-  const likeButton = cardElement.querySelector(".elements__like");
-  const deleteButton = cardElement.querySelector(".elements__delete");
-  const showPopupImage = cardElement.querySelector(".elements__image");
-
-  cardName.textContent = data.name;
-  cardImage.src = data.link;
-  cardImage.alt = data.name;
-
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("elements__like-active");
-  });
-
-  deleteButton.addEventListener("click", () => {
-    cardElement.remove();
-  });
-
-  showPopupImage.addEventListener("click", () => {
-    imagePopup.alt = data.name;
-    imagePopup.src = data.link;
-    imageDescription.textContent = data.name;
-    openPopup(popupShow);
-  });
-
-  return cardElement;
-}
-
-initialCards.reverse().forEach((cardsContainer) => {
-  renderData(cardsContainer);
-});
+export { imagePopup, imageDescription, openPopup, popupShow };
