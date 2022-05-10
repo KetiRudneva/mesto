@@ -1,5 +1,6 @@
 import { initialCards } from "./initialCards.js";
 import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
 
 // cards
 const cardsContainer = document.querySelector(".elements");
@@ -28,12 +29,23 @@ const addCard = document.querySelector(".profile__add-button");
 const closePopupEdit = document.querySelector(".popup__close-edit");
 const closePopupAdd = document.querySelector(".popup__close-add");
 const closePopupShow = document.querySelector(".popup__close-show");
-const submitPopupEdit = document.querySelector(".popup__submit-edit");
-const submitPopupAdd = document.querySelector(".popup__submit-add");
 
-//popup show
+// popup show
 const imagePopup = popupShow.querySelector(".popup__fullscreen-image");
 const imageDescription = popupShow.querySelector(".popup__description");
+
+// validation
+const config = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__text",
+  submitButtonSelector: ".popup__submit-button",
+  inactiveButtonClass: "popup__submit-button_inactive",
+  inputErrorClass: "popup__text-error",
+  errorClass: "popup__text-error_active",
+};
+
+const formAddValidator = new FormValidator(config, popupAdd);
+formAddValidator.enableValidation();
 
 const openPopup = (popup) => {
   popup.classList.add("popup_opened");
@@ -44,14 +56,6 @@ const closePopup = (popup) => {
   popup.classList.remove("popup_opened");
   document.removeEventListener("keydown", closeByEscape);
 };
-
-// ________________________________________________________________
-
-// const renderData = (data) => {
-//   const cardElement = addNewCard(data);
-//   cardsContainer.prepend(cardElement);
-// };
-
 const renderData = (data) => {
   const card = new Card(data, ".card-template");
   const cardElement = card.generateCard();
@@ -59,9 +63,14 @@ const renderData = (data) => {
   cardsContainer.prepend(cardElement);
 };
 
-initialCards.reverse().forEach((card) => renderData(card));
+function closeByEscape(evt) {
+  if (evt.key === "Escape") {
+    const popupActive = document.querySelector(".popup_opened");
+    closePopup(popupActive);
+  }
+}
 
-// ________________________________________________________________
+initialCards.reverse().forEach((card) => renderData(card));
 
 function handleProfileFormEdit(evt) {
   evt.preventDefault();
@@ -80,42 +89,35 @@ function handleCardFormAdd(evt) {
   formCard.reset();
 }
 
-function closeByEscape(evt) {
-  if (evt.key === "Escape") {
-    const popupActive = document.querySelector(".popup_opened");
-    closePopup(popupActive);
-  }
-}
+// function deleteErrors(popup) {
+//   popupErrors = popup.querySelectorAll(".popup__text-error");
+//   popupErrorsActive = popup.querySelectorAll(".popup__text-error_active");
 
-function deleteErrors(popup) {
-  popupErrors = popup.querySelectorAll(".popup__text-error");
-  popupErrorsActive = popup.querySelectorAll(".popup__text-error_active");
+//   popupErrors.forEach((inputElement) => {
+//     inputElement.classList.remove("popup__text-error");
+//     inputElement.textContent = "";
+//   });
 
-  popupErrors.forEach((inputElement) => {
-    inputElement.classList.remove("popup__text-error");
-    inputElement.textContent = "";
-  });
-
-  popupErrorsActive.forEach((formError) => {
-    formError.classList.remove("popup__text-error_active");
-  });
-}
+//   popupErrorsActive.forEach((formError) => {
+//     formError.classList.remove("popup__text-error_active");
+//   });
+// }
 
 //listeners
 editButton.addEventListener("click", () => {
   nameInput.value = profileName.textContent;
   jobInput.value = job.textContent;
-  deleteErrors(popupEdit);
-  submitPopupEdit.removeAttribute("disabled");
-  submitPopupEdit.classList.remove("popup__submit-button_inactive");
+  formAddValidator.deleteErrors();
+  // submitPopupEdit.removeAttribute("disabled");
+  // submitPopupEdit.classList.remove("popup__submit-button_inactive");
   openPopup(popupEdit);
 });
 
 addCard.addEventListener("click", () => {
   formCard.reset();
-  submitPopupAdd.setAttribute("disabled", true);
-  submitPopupAdd.classList.add("popup__submit-button_inactive");
-  deleteErrors(popupAdd);
+  // submitPopupAdd.setAttribute("disabled", true);
+  // submitPopupAdd.classList.add("popup__submit-button_inactive");
+  formAddValidator.deleteErrors();
   openPopup(popupAdd);
 });
 
@@ -145,4 +147,4 @@ popupAll.forEach((popup) => {
 formProfile.addEventListener("submit", handleProfileFormEdit);
 formCard.addEventListener("submit", handleCardFormAdd);
 
-export { imagePopup, imageDescription, openPopup, popupShow };
+export { imagePopup, imageDescription, openPopup, popupShow, config };
