@@ -25,10 +25,7 @@ const popupAll = document.querySelectorAll(".popup");
 
 // popups buttons
 const editButton = document.querySelector(".profile__edit-button");
-const addCard = document.querySelector(".profile__add-button");
-const closePopupEdit = document.querySelector(".popup__close-edit");
-const closePopupAdd = document.querySelector(".popup__close-add");
-const closePopupShow = document.querySelector(".popup__close-show");
+const addCardButton = document.querySelector(".profile__add-button");
 
 // popup show
 const imagePopup = popupShow.querySelector(".popup__fullscreen-image");
@@ -47,6 +44,17 @@ const config = {
 const formAddValidator = new FormValidator(config, popupAdd);
 formAddValidator.enableValidation();
 
+const formEditValidator = new FormValidator(config, popupEdit);
+formEditValidator.enableValidation();
+
+// new card
+const renderData = (data) => {
+  const card = new Card(data, ".card-template");
+  const cardElement = card.generateCard();
+
+  cardsContainer.prepend(cardElement);
+};
+
 const openPopup = (popup) => {
   popup.classList.add("popup_opened");
   document.addEventListener("keydown", closeByEscape);
@@ -55,12 +63,6 @@ const openPopup = (popup) => {
 const closePopup = (popup) => {
   popup.classList.remove("popup_opened");
   document.removeEventListener("keydown", closeByEscape);
-};
-const renderData = (data) => {
-  const card = new Card(data, ".card-template");
-  const cardElement = card.generateCard();
-
-  cardsContainer.prepend(cardElement);
 };
 
 function closeByEscape(evt) {
@@ -85,52 +87,22 @@ function handleCardFormAdd(evt) {
     name: titleInput.value,
     link: linkInput.value,
   };
+  renderData(data);
   closePopup(popupAdd);
-  formCard.reset();
 }
-
-// function deleteErrors(popup) {
-//   popupErrors = popup.querySelectorAll(".popup__text-error");
-//   popupErrorsActive = popup.querySelectorAll(".popup__text-error_active");
-
-//   popupErrors.forEach((inputElement) => {
-//     inputElement.classList.remove("popup__text-error");
-//     inputElement.textContent = "";
-//   });
-
-//   popupErrorsActive.forEach((formError) => {
-//     formError.classList.remove("popup__text-error_active");
-//   });
-// }
 
 //listeners
 editButton.addEventListener("click", () => {
   nameInput.value = profileName.textContent;
   jobInput.value = job.textContent;
-  formAddValidator.deleteErrors();
-  // submitPopupEdit.removeAttribute("disabled");
-  // submitPopupEdit.classList.remove("popup__submit-button_inactive");
+  formEditValidator._deleteErrors();
   openPopup(popupEdit);
 });
 
-addCard.addEventListener("click", () => {
+addCardButton.addEventListener("click", () => {
   formCard.reset();
-  // submitPopupAdd.setAttribute("disabled", true);
-  // submitPopupAdd.classList.add("popup__submit-button_inactive");
-  formAddValidator.deleteErrors();
+  formAddValidator._deleteErrors();
   openPopup(popupAdd);
-});
-
-closePopupAdd.addEventListener("click", () => {
-  closePopup(popupAdd);
-});
-
-closePopupEdit.addEventListener("click", () => {
-  closePopup(popupEdit);
-});
-
-closePopupShow.addEventListener("click", () => {
-  closePopup(popupShow);
 });
 
 popupAll.forEach((popup) => {
