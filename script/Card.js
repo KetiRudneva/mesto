@@ -29,11 +29,10 @@ export default class Card {
     this._showPopupImage = this._element.querySelector(".elements__image");
 
     const cardName = this._element.querySelector(".elements__title");
-    const cardImage = this._element.querySelector(".elements__image");
 
     cardName.textContent = this._title;
-    cardImage.src = this._link;
-    cardImage.alt = this._alt;
+    this._showPopupImage.src = this._link;
+    this._showPopupImage.alt = this._alt;
 
     this._setEventListeners();
 

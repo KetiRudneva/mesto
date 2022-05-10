@@ -5,9 +5,6 @@ export default class FormValidator {
     this._inputList = Array.from(
       this._formElement.querySelectorAll(this._config.inputSelector)
     );
-    this._formList = Array.from(
-      this._formElement.querySelectorAll(this._config.formSelector)
-    );
     this._buttonElement = this._formElement.querySelector(
       this._config.submitButtonSelector
     );
@@ -64,7 +61,7 @@ export default class FormValidator {
     });
   }
 
-  _deleteErrors() {
+  deleteErrors() {
     this._toggleBtnState();
     this._inputList.forEach((inputElement) => {
       this._hideError(inputElement);

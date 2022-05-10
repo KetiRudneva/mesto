@@ -95,13 +95,13 @@ function handleCardFormAdd(evt) {
 editButton.addEventListener("click", () => {
   nameInput.value = profileName.textContent;
   jobInput.value = job.textContent;
-  formEditValidator._deleteErrors();
+  formEditValidator.deleteErrors();
   openPopup(popupEdit);
 });
 
 addCardButton.addEventListener("click", () => {
   formCard.reset();
-  formAddValidator._deleteErrors();
+  formAddValidator.deleteErrors();
   openPopup(popupAdd);
 });
 
