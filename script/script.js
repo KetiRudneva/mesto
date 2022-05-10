@@ -55,6 +55,8 @@ const renderData = (data) => {
   cardsContainer.prepend(cardElement);
 };
 
+initialCards.reverse().forEach((card) => renderData(card));
+
 const openPopup = (popup) => {
   popup.classList.add("popup_opened");
   document.addEventListener("keydown", closeByEscape);
@@ -71,8 +73,6 @@ function closeByEscape(evt) {
     closePopup(popupActive);
   }
 }
-
-initialCards.reverse().forEach((card) => renderData(card));
 
 function handleProfileFormEdit(evt) {
   evt.preventDefault();
