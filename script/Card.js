@@ -27,7 +27,6 @@ export default class Card {
     this._buttonLike = this._element.querySelector(".elements__like");
     this._deleteButton = this._element.querySelector(".elements__delete");
     this._showPopupImage = this._element.querySelector(".elements__image");
-    console.log(this._showPopupImage);
 
     const cardName = this._element.querySelector(".elements__title");
     const cardImage = this._element.querySelector(".elements__image");
