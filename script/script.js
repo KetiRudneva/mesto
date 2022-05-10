@@ -1,6 +1,7 @@
-import { initialCards } from "./initialCards.js";
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
+import { initialCards } from "./initialCards.js";
+import { openPopup, closePopup } from "./utils.js";
 
 // cards
 const cardsContainer = document.querySelector(".elements");
@@ -20,16 +21,11 @@ const linkInput = document.querySelector(".popup__text-link");
 //popups
 const popupEdit = document.querySelector(".popup_edit");
 const popupAdd = document.querySelector(".popup_add");
-const popupShow = document.querySelector(".popup_show");
 const popupAll = document.querySelectorAll(".popup");
 
 // popups buttons
 const editButton = document.querySelector(".profile__edit-button");
 const addCardButton = document.querySelector(".profile__add-button");
-
-// popup show
-const imagePopup = popupShow.querySelector(".popup__fullscreen-image");
-const imageDescription = popupShow.querySelector(".popup__description");
 
 // validation
 const config = {
@@ -56,23 +52,6 @@ const renderData = (data) => {
 };
 
 initialCards.reverse().forEach((card) => renderData(card));
-
-const openPopup = (popup) => {
-  popup.classList.add("popup_opened");
-  document.addEventListener("keydown", closeByEscape);
-};
-
-const closePopup = (popup) => {
-  popup.classList.remove("popup_opened");
-  document.removeEventListener("keydown", closeByEscape);
-};
-
-function closeByEscape(evt) {
-  if (evt.key === "Escape") {
-    const popupActive = document.querySelector(".popup_opened");
-    closePopup(popupActive);
-  }
-}
 
 function handleProfileFormEdit(evt) {
   evt.preventDefault();
@@ -118,5 +97,3 @@ popupAll.forEach((popup) => {
 
 formProfile.addEventListener("submit", handleProfileFormEdit);
 formCard.addEventListener("submit", handleCardFormAdd);
-
-export { imagePopup, imageDescription, openPopup, popupShow, config };

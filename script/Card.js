@@ -1,9 +1,4 @@
-import {
-  imagePopup,
-  imageDescription,
-  openPopup,
-  popupShow,
-} from "./script.js";
+import { imagePopup, imageDescription, openPopup, popupShow } from "./utils.js";
 export default class Card {
   constructor(data, cardSelector) {
     this._title = data.name;
