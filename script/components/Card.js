@@ -5,11 +5,12 @@ import {
   popupShow,
 } from "../utils.js";
 export default class Card {
-  constructor(data, cardSelector) {
+  constructor(data, cardSelector, handleCardClick) {
     this._title = data.name;
     this._link = data.link;
     this._alt = data.alt;
     this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -39,6 +40,15 @@ export default class Card {
     return this._element;
   }
 
+  handleCardClick(evt) {
+    evt.preventDefault();
+    const data = {
+      name: this._title,
+      link: this._link,
+    };
+    this.
+  }
+
   _setEventListeners() {
     this._buttonLike.addEventListener("click", () => {
       this._clickButtonLike();
@@ -58,6 +68,7 @@ export default class Card {
   _clickButtonDelete() {
     this._element.remove();
   }
+  
   _clickShowPopupImage() {
     imagePopup.alt = this._alt;
     imagePopup.src = this._link;
