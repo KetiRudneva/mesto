@@ -51,7 +51,7 @@ const renderData = (data) => {
 
 const section = new Section(
   {
-    items: initialCards,
+    items: initialCards.reverse(),
     renderer: renderData,
   },
   ".elements"
