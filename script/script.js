@@ -1,10 +1,8 @@
 import Card from "./components/Card.js";
+import Section from "./components/Section.js";
 import FormValidator from "./components/FormValidator.js";
 import { initialCards } from "./initialCards.js";
 import { openPopup, closePopup } from "./utils.js";
-
-// cards
-const cardsContainer = document.querySelector(".elements");
 
 // popup edit profile
 const formProfile = document.querySelector(".popup__form-profile");
@@ -48,10 +46,17 @@ const renderData = (data) => {
   const card = new Card(data, ".card-template");
   const cardElement = card.generateCard();
 
-  cardsContainer.prepend(cardElement);
+  return cardElement;
 };
 
-initialCards.reverse().forEach((card) => renderData(card));
+const section = new Section(
+  {
+    items: initialCards,
+    renderer: renderData,
+  },
+  ".elements"
+);
+section.renderer();
 
 function handleProfileFormEdit(evt) {
   evt.preventDefault();
