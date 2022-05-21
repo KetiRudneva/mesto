@@ -1,5 +1,6 @@
 import Card from "./components/Card.js";
 import Section from "./components/Section.js";
+import PopupWithImage from "./components/PopupWithImage.js";
 import FormValidator from "./components/FormValidator.js";
 import { initialCards } from "./initialCards.js";
 import { openPopup, closePopup } from "./utils.js";
@@ -41,6 +42,8 @@ formAddValidator.enableValidation();
 const formEditValidator = new FormValidator(config, popupEdit);
 formEditValidator.enableValidation();
 
+const popupShowImage = new PopupWithImage(".popup_show");
+popupShowImage.setEventListeners();
 // new card
 const renderData = (data) => {
   const card = new Card(data, ".card-template");
@@ -87,17 +90,6 @@ addCardButton.addEventListener("click", () => {
   formCard.reset();
   formAddValidator.deleteErrors();
   openPopup(popupAdd);
-});
-
-popupAll.forEach((popup) => {
-  popup.addEventListener("mousedown", (evt) => {
-    if (
-      evt.target === evt.currentTarget ||
-      evt.target.classList.contains("popup__close-button")
-    ) {
-      closePopup(popup);
-    }
-  });
 });
 
 formProfile.addEventListener("submit", handleProfileFormEdit);

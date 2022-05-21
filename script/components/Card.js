@@ -46,7 +46,6 @@ export default class Card {
       name: this._title,
       link: this._link,
     };
-    this.
   }
 
   _setEventListeners() {
@@ -68,7 +67,7 @@ export default class Card {
   _clickButtonDelete() {
     this._element.remove();
   }
-  
+
   _clickShowPopupImage() {
     imagePopup.alt = this._alt;
     imagePopup.src = this._link;
