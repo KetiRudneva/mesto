@@ -1,6 +1,7 @@
 import Card from "./components/Card.js";
 import Section from "./components/Section.js";
 import PopupWithImage from "./components/PopupWithImage.js";
+import PopupWithForm from "./components/PopupWithForm.js";
 import FormValidator from "./components/FormValidator.js";
 import { initialCards } from "./initialCards.js";
 import { openPopup, closePopup } from "./utils.js";
@@ -14,13 +15,10 @@ const job = document.querySelector(".profile__profession");
 
 //popup add new card
 const formCard = document.querySelector(".popup__form-add");
-const titleInput = document.querySelector(".popup__text-title");
-const linkInput = document.querySelector(".popup__text-link");
 
 //popups
 const popupEdit = document.querySelector(".popup_edit");
 const popupAdd = document.querySelector(".popup_add");
-const popupAll = document.querySelectorAll(".popup");
 
 // popups buttons
 const editButton = document.querySelector(".profile__edit-button");
@@ -44,11 +42,11 @@ formEditValidator.enableValidation();
 
 const popupShowImage = new PopupWithImage(".popup_show");
 popupShowImage.setEventListeners();
+
 // new card
 const renderData = (data) => {
   const card = new Card(data, ".card-template");
   const cardElement = card.generateCard();
-
   return cardElement;
 };
 
@@ -61,21 +59,22 @@ const section = new Section(
 );
 section.renderer();
 
+const popupCardAdd = new PopupWithForm(".popup_add", (cardElement) => {
+  const data = {
+    name: cardElement.cardTitle,
+    link: cardElement.cardLink,
+  };
+  section.addItem(renderData(data));
+  popupCardAdd.closePopup();
+});
+
+popupCardAdd.setEventListeners();
+
 function handleProfileFormEdit(evt) {
   evt.preventDefault();
   job.textContent = jobInput.value;
   profileName.textContent = nameInput.value;
   closePopup(popupEdit);
-}
-
-function handleCardFormAdd(evt) {
-  evt.preventDefault();
-  const data = {
-    name: titleInput.value,
-    link: linkInput.value,
-  };
-  renderData(data);
-  closePopup(popupAdd);
 }
 
 //listeners
@@ -93,4 +92,3 @@ addCardButton.addEventListener("click", () => {
 });
 
 formProfile.addEventListener("submit", handleProfileFormEdit);
-formCard.addEventListener("submit", handleCardFormAdd);
