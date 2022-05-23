@@ -64,7 +64,6 @@ const profileInfo = new UserInfo({
 });
 
 const popupCardEdit = new PopupWithForm(".popup_edit", (data) => {
-  console.log(data);
   profileInfo.setUserInfo(data);
   popupCardEdit.closePopup();
 });
