@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/KetiRudneva/mesto/issues"
   },
-  "homepage": "https://github.com/KetiRudneva/mesto#readme"
+  "homepage": "https://github.com/KetiRudneva/mesto#readme",
+  "devDependencies": {
+    "webpack": "^5.72.1"
+  }
 }
