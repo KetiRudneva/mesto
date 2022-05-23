@@ -6,9 +6,10 @@ export default class UserInfo {
 
   getUserInfo() {
     const userInfo = {
-      profileName: this._profileName.value,
-      profileJob: this._profileJob.value,
+      profileName: this._profileName.textContent,
+      profileJob: this._profileJob.textContent,
     };
+    console.log(userInfo);
     return userInfo;
   }
 

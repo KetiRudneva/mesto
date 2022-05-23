@@ -59,11 +59,12 @@ const popupCardAdd = new PopupWithForm(".popup_add", (cardData) => {
 popupCardAdd.setEventListeners();
 
 const profileInfo = new UserInfo({
-  nameSelector: ".popup__text-name",
-  jobSelector: ".popup__text-job",
+  nameSelector: ".profile__name",
+  jobSelector: ".profile__profession",
 });
 
 const popupCardEdit = new PopupWithForm(".popup_edit", (data) => {
+  console.log(data);
   profileInfo.setUserInfo(data);
   popupCardEdit.closePopup();
 });
@@ -75,7 +76,6 @@ editButton.addEventListener("click", () => {
 
   nameInput.value = getUserInfo.profileName;
   jobInput.value = getUserInfo.profileJob;
-  console.log("1", formAddValidator.deleteErrors);
 
   formAddValidator.deleteErrors();
   popupCardEdit.openPopup();
