@@ -1,11 +1,5 @@
-import {
-  imagePopup,
-  imageDescription,
-  openPopup,
-  popupShow,
-} from "../utils.js";
 export default class Card {
-  constructor(data, cardSelector, handleCardClick) {
+  constructor({ data, handleCardClick }, cardSelector) {
     this._title = data.name;
     this._link = data.link;
     this._alt = data.alt;
@@ -30,22 +24,15 @@ export default class Card {
     this._showPopupImage = this._element.querySelector(".elements__image");
 
     const cardName = this._element.querySelector(".elements__title");
+    const cardImage = this._element.querySelector(".elements__image");
 
     cardName.textContent = this._title;
-    this._showPopupImage.src = this._link;
-    this._showPopupImage.alt = this._alt;
+    cardImage.src = this._link;
+    cardImage.alt = this._alt;
 
     this._setEventListeners();
 
     return this._element;
-  }
-
-  handleCardClick(evt) {
-    evt.preventDefault();
-    const data = {
-      name: this._title,
-      link: this._link,
-    };
   }
 
   _setEventListeners() {
@@ -56,7 +43,7 @@ export default class Card {
       this._clickButtonDelete();
     });
     this._showPopupImage.addEventListener("click", () => {
-      this._clickShowPopupImage();
+      this._handleCardClick();
     });
   }
 
@@ -66,12 +53,6 @@ export default class Card {
 
   _clickButtonDelete() {
     this._element.remove();
-  }
-
-  _clickShowPopupImage() {
-    imagePopup.alt = this._alt;
-    imagePopup.src = this._link;
-    imageDescription.textContent = this._title;
-    openPopup(popupShow);
+    this._element = null;
   }
 }
