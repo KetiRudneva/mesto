@@ -14,6 +14,7 @@ import {
   editButton,
   addCardButton,
 } from "./utils/constants.js";
+import "../pages/index.css";
 
 const formAddValidator = new FormValidator(config, popupAdd);
 formAddValidator.enableValidation();
