@@ -33,6 +33,11 @@ module.exports = {
           filename: "fonts/[name.[contenthash][ext]]",
         },
       },
+      {
+        test: /\.js$/,
+        use: "babel-loader",
+        exclude: "/node_modules/",
+      },
     ],
   },
   plugins: [
