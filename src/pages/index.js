@@ -1,11 +1,11 @@
-import Card from "./components/Card.js";
-import Section from "./components/Section.js";
-import PopupWithImage from "./components/PopupWithImage.js";
-import PopupWithForm from "./components/PopupWithForm.js";
-import FormValidator from "./components/FormValidator.js";
-import UserInfo from "./components/UserInfo.js";
-import { initialCards } from "./utils/initialCards.js";
-import { config } from "./utils/config.js";
+import Card from "../components/Card.js";
+import Section from "../components/Section.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import FormValidator from "../components/FormValidator.js";
+import UserInfo from "../components/UserInfo.js";
+import { initialCards } from "../utils/initialCards.js";
+import { config } from "../utils/config.js";
 import {
   nameInput,
   jobInput,
@@ -13,7 +13,7 @@ import {
   popupEdit,
   editButton,
   addCardButton,
-} from "./utils/constants.js";
+} from "../utils/constants.js";
 import "../pages/index.css";
 
 const formAddValidator = new FormValidator(config, popupAdd);
