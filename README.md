@@ -24,5 +24,4 @@
 - HTML
 - CSS
 - Javascript
-- ООП
 
