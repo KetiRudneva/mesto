@@ -4,6 +4,7 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import FormValidator from "../components/FormValidator.js";
 import UserInfo from "../components/UserInfo.js";
+import Api from "../components/Api.js";
 import { initialCards } from "../utils/initialCards.js";
 import { config } from "../utils/config.js";
 import {
@@ -15,6 +16,20 @@ import {
   addCardButton,
 } from "../utils/constants.js";
 import "../pages/index.css";
+
+//экземпляр класса апи для работы с запросами на сервер
+const api = new Api({
+  baseUrl: "https://nomoreparties.co/v1/cohort-42/",
+  headers: {
+    authorization: "622cedbc-a041-41b2-ac81-42db94da4679",
+    "Content-Type": "application/json",
+  },
+});
+
+const userServerData = api.getUserData();
+userServerData
+  .then((data) => profileInfo.setUserInfo(data))
+  .catch((err) => console.log(err));
 
 const formAddValidator = new FormValidator(config, popupAdd);
 formAddValidator.enableValidation();
@@ -62,6 +77,7 @@ popupCardAdd.setEventListeners();
 const profileInfo = new UserInfo({
   nameSelector: ".profile__name",
   jobSelector: ".profile__profession",
+  imgSelector: ".profile__avatar-img",
 });
 
 const popupCardEdit = new PopupWithForm(".popup_edit", (data) => {

@@ -1,5 +1,5 @@
 .profile__avatar {
-  min-width: 120px;
-  height: 120px;
-  background-image: url(../../../images/Avatar.svg);
+  position: relative;
+  display: flex;
+  justify-content: center;
 }
