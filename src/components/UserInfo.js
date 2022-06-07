@@ -15,8 +15,13 @@ export default class UserInfo {
   }
 
   setUserInfo(data) {
+    this._id = data._id;
     this._profileName.textContent = data.name;
     this._profileJob.textContent = data.about;
     this._profileImage.src = data.avatar;
+  }
+
+  returnId() {
+    return this._id;
   }
 }

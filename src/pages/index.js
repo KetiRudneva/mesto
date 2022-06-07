@@ -28,7 +28,12 @@ const api = new Api({
 
 const userServerData = api.getUserData();
 userServerData
-  .then((data) => profileInfo.setUserInfo(data))
+  .then((userData) => profileInfo.setUserInfo(userData))
+  .catch((err) => console.log(err));
+
+const cardServerData = api.getCards();
+cardServerData
+  .then((cardData) => section.renderer(cardData))
   .catch((err) => console.log(err));
 
 const formAddValidator = new FormValidator(config, popupAdd);
@@ -54,14 +59,7 @@ const renderData = (data) => {
   return cardElement;
 };
 
-const section = new Section(
-  {
-    items: initialCards.reverse(),
-    renderer: renderData,
-  },
-  ".elements"
-);
-section.renderer();
+const section = new Section({ renderer: renderData }, ".elements");
 
 const popupCardAdd = new PopupWithForm(".popup_add", (cardData) => {
   const data = {

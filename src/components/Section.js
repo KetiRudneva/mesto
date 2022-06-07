@@ -6,8 +6,9 @@ export default class Section {
     this._container = document.querySelector(containerSelector);
   }
 
-  renderer() {
-    this._initialArray.forEach((item) => {
+  renderer(data) {
+    console.log("3", data);
+    data.forEach((item) => {
       const element = this._renderer(item);
       this.addItem(element);
     });
