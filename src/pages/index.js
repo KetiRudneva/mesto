@@ -60,7 +60,7 @@ const popupCardAdd = new PopupWithForm('.popup_add', (cardData) => {
 	api
 		.addNewCard(data)
 		.then((data) => {
-			section.addItem(renderData(data)), console.log('4', data), popupCardAdd.closePopup();
+			section.addItem(renderData(data)), popupCardAdd.closePopup();
 		})
 		.catch((err) => console.log(err));
 });
