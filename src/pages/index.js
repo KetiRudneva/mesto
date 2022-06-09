@@ -73,7 +73,7 @@ const popupCardEdit = new PopupWithForm('.popup_edit', (data) => {
 			about: data.profileJob
 		})
 		.then((data) => {
-			profileInfo.setUserInfo(data), console.log('1'), popupCardEdit.closePopup();
+			profileInfo.setUserInfo(data), popupCardEdit.closePopup();
 		})
 		.catch((err) => console.log(err));
 });
