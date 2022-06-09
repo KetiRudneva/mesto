@@ -38,4 +38,16 @@ export default class Api {
 		});
 		return this._handleError(res);
 	}
+
+	async addNewCard(data) {
+		const res = await fetch(`${this._baseUrl}cards`, {
+			method: 'POST',
+			headers: this._headers,
+			body: JSON.stringify({
+				name: data.name,
+				link: data.link
+			})
+		});
+		return this._handleError(res);
+	}
 }

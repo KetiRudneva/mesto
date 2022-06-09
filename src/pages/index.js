@@ -18,6 +18,8 @@ const api = new Api({
 	}
 });
 
+let userId;
+
 const userServerData = api.getUserData();
 userServerData.then((userData) => profileInfo.setUserInfo(userData)).catch((err) => console.log(err));
 
@@ -36,13 +38,14 @@ popupShowImage.setEventListeners();
 const renderData = (data) => {
 	const card = new Card(
 		{
-			data: data,
+			data: { ...data, currentUser: userId },
 			handleCardClick: () => {
 				popupShowImage.openPopup(data);
 			}
 		},
 		'.card-template'
 	);
+	console.log(card);
 	const cardElement = card.generateCard();
 	return cardElement;
 };
@@ -54,8 +57,12 @@ const popupCardAdd = new PopupWithForm('.popup_add', (cardData) => {
 		name: cardData.cardTitle,
 		link: cardData.cardLink
 	};
-	section.addItem(renderData(data));
-	popupCardAdd.closePopup();
+	api
+		.addNewCard(data)
+		.then((data) => {
+			section.addItem(renderData(data)), console.log('4', data), popupCardAdd.closePopup();
+		})
+		.catch((err) => console.log(err));
 });
 
 popupCardAdd.setEventListeners();
