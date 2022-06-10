@@ -51,6 +51,14 @@ export default class Api {
 		return this._handleError(res);
 	}
 
+	async deleteCard(id) {
+		const res = await fetch(`${this._baseUrl}cards/${id}`, {
+			method: 'DELETE',
+			headers: this._headers
+		});
+		return this._handleError(res);
+	}
+
 	async addLikes(id) {
 		const res = await fetch(`${this._baseUrl}cards/${id}/likes`, {
 			method: 'PUT',
@@ -63,6 +71,17 @@ export default class Api {
 		const res = await fetch(`${this._baseUrl}cards/${id}/likes`, {
 			method: 'DELETE',
 			headers: this._headers
+		});
+		return this._handleError(res);
+	}
+
+	async editAvatar(data) {
+		const res = await fetch(`${this._baseUrl}users/me/avatar`, {
+			method: 'PUT',
+			headers: this._headers,
+			body: JSON.stringify({
+				avatar: data.avatar
+			})
 		});
 		return this._handleError(res);
 	}

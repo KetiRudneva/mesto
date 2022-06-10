@@ -7,7 +7,9 @@ export default class PopupWithSubmit extends Popup {
 		this._popupDeleteBtn = this._popupSelector.querySelector('.popup__submit-delete');
 	}
 
-	_handleSubmit() {}
+	submitDelete(submit) {
+		this._handleSubmit = submit;
+	}
 
 	setEventListeners() {
 		super.setEventListeners();

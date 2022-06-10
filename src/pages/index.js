@@ -69,6 +69,14 @@ const renderData = (data) => {
 			},
 			handleDeleteCardClick: () => {
 				popupDeleteCard.openPopup();
+				popupDeleteCard.submitDelete(() => {
+					api
+						.deleteCard(data._id)
+						.then(() => {
+							popupDeleteCard.closePopup(), card.deleteCard();
+						})
+						.catch((err) => console.log(err));
+				});
 			}
 		},
 		'.card-template'
