@@ -2,6 +2,7 @@ import Card from '../components/Card.js';
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithSubmit from '../components/PopupWithSubmit.js';
 import FormValidator from '../components/FormValidator.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
@@ -40,6 +41,9 @@ formEditValidator.enableValidation();
 const popupShowImage = new PopupWithImage('.popup_show');
 popupShowImage.setEventListeners();
 
+const popupDeleteCard = new PopupWithSubmit('.popup_delete');
+popupDeleteCard.setEventListeners();
+
 const renderData = (data) => {
 	const card = new Card(
 		{
@@ -62,6 +66,9 @@ const renderData = (data) => {
 						})
 						.catch((err) => console.log(err));
 				}
+			},
+			handleDeleteCardClick: () => {
+				popupDeleteCard.openPopup();
 			}
 		},
 		'.card-template'
