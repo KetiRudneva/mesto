@@ -7,7 +7,16 @@ import FormValidator from '../components/FormValidator.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
 import { config } from '../utils/config.js';
-import { nameInput, jobInput, popupAdd, popupEdit, editButton, addCardButton } from '../utils/constants.js';
+import {
+	nameInput,
+	jobInput,
+	popupAdd,
+	popupEdit,
+	popupAvatarEdit,
+	editButton,
+	addCardButton,
+	popupAvatarEditButton
+} from '../utils/constants.js';
 import '../pages/index.css';
 
 //экземпляр класса апи для работы с запросами на сервер
@@ -37,6 +46,9 @@ formAddValidator.enableValidation();
 
 const formEditValidator = new FormValidator(config, popupEdit);
 formEditValidator.enableValidation();
+
+const formAvatarValidator = new FormValidator(config, popupAvatarEdit);
+formAvatarValidator.enableValidation();
 
 const popupShowImage = new PopupWithImage('.popup_show');
 popupShowImage.setEventListeners();
@@ -85,6 +97,16 @@ const renderData = (data) => {
 	const cardElement = card.generateCard();
 	return cardElement;
 };
+
+const popupEditAvatar = new PopupWithForm('.popup_avatar', (data) => {
+	api
+		.editAvatar(data)
+		.then((data) => {
+			console.log(data);
+		})
+		.catch((err) => console.log(err));
+});
+popupEditAvatar.setEventListeners();
 
 const section = new Section({ renderer: renderData }, '.elements');
 
@@ -136,4 +158,9 @@ editButton.addEventListener('click', () => {
 addCardButton.addEventListener('click', () => {
 	formAddValidator.deleteErrors();
 	popupCardAdd.openPopup();
+});
+
+popupAvatarEditButton.addEventListener('click', () => {
+	formAddValidator.deleteErrors();
+	popupEditAvatar.openPopup();
 });

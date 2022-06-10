@@ -101,13 +101,14 @@
 
   <!-- popup edit avatar -->
     <div class="popup popup_avatar popup_darkoverlay">
-      <div class="popup_container">
+      <div class="popup__container">
         <button type="button" class="popup__close-button popup__close-avatar"></button>
         <form class="popup__form popup__form-avatar" name="avatar" novalidate>
+          <h2 class="popup__title">Обновить аватар</h2>
           <fieldset class="popup__fieldset">
             <label class="popup__field">
               <input class="popup__text popup__text-link" id="link-avatar-input" type="url" name="avatarLink" placeholder="Ссылка на аватар" required/>
-              <span class="popup__text-error link-input-error"></span>
+              <span class="popup__text-error link-avatar-input-error"></span>
             </label>
           </fieldset>
           <button class="popup__submit-button popup__submit-avatar" type="submit">Сохранить</button>
