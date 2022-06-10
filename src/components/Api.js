@@ -50,4 +50,20 @@ export default class Api {
 		});
 		return this._handleError(res);
 	}
+
+	async addLikes(id) {
+		const res = await fetch(`${this._baseUrl}cards/${id}/likes`, {
+			method: 'PUT',
+			headers: this._headers
+		});
+		return this._handleError(res);
+	}
+
+	async removeLikes(id) {
+		const res = await fetch(`${this._baseUrl}cards/${id}/likes`, {
+			method: 'DELETE',
+			headers: this._headers
+		});
+		return this._handleError(res);
+	}
 }

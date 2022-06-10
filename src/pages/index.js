@@ -21,7 +21,12 @@ const api = new Api({
 let userId;
 
 const userServerData = api.getUserData();
-userServerData.then((userData) => profileInfo.setUserInfo(userData)).catch((err) => console.log(err));
+userServerData
+	.then((userData) => {
+		profileInfo.setUserInfo(userData);
+		userId = userData._id;
+	})
+	.catch((err) => console.log(err));
 
 const cardServerData = api.getCards();
 cardServerData.then((cardData) => section.renderer(cardData)).catch((err) => console.log(err));
@@ -38,14 +43,30 @@ popupShowImage.setEventListeners();
 const renderData = (data) => {
 	const card = new Card(
 		{
-			data: { ...data, currentUser: userId },
+			data: data,
+			userId: userId,
 			handleCardClick: () => {
 				popupShowImage.openPopup(data);
+			},
+			handleLikeClick: () => {
+				if (card.isLiked()) {
+					api
+						.removeLikes(data._id)
+						.then((data) => card.setLikes(data.likes))
+						.catch((err) => console.log(err));
+				} else {
+					api
+						.addLikes(data._id)
+						.then((data) => {
+							card.setLikes(data.likes);
+						})
+						.catch((err) => console.log(err));
+				}
 			}
 		},
 		'.card-template'
 	);
-	console.log(card);
+
 	const cardElement = card.generateCard();
 	return cardElement;
 };
