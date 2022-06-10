@@ -10,6 +10,7 @@ import { config } from '../utils/config.js';
 import {
 	nameInput,
 	jobInput,
+	avatar,
 	popupAdd,
 	popupEdit,
 	popupAvatarEdit,
@@ -102,7 +103,8 @@ const popupEditAvatar = new PopupWithForm('.popup_avatar', (data) => {
 	api
 		.editAvatar(data)
 		.then((data) => {
-			console.log(data);
+			avatar.src = data.avatar;
+			popupEditAvatar.closePopup();
 		})
 		.catch((err) => console.log(err));
 });

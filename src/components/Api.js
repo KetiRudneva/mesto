@@ -77,10 +77,10 @@ export default class Api {
 
 	async editAvatar(data) {
 		const res = await fetch(`${this._baseUrl}users/me/avatar`, {
-			method: 'PUT',
+			method: 'PATCH',
 			headers: this._headers,
 			body: JSON.stringify({
-				avatar: data.avatar
+				avatar: data.avatarLink
 			})
 		});
 		return this._handleError(res);

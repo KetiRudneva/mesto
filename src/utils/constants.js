@@ -13,9 +13,13 @@ const editButton = document.querySelector('.profile__edit-button');
 const addCardButton = document.querySelector('.profile__add-button');
 const popupAvatarEditButton = document.querySelector('.profile__avatar-btn');
 
+// avatar
+const avatar = document.querySelector('.profile__avatar-img');
+
 export {
 	nameInput,
 	jobInput,
+	avatar,
 	popupAdd,
 	popupEdit,
 	popupDeleteCard,
