@@ -1,35 +1,42 @@
-import Popup from "./Popup.js";
+import Popup from './Popup.js';
 
 export default class PopupWithForm extends Popup {
-  constructor(popupSelector, handleProfileFormEdit) {
-    super(popupSelector);
-    this._handleProfileFormEdit = handleProfileFormEdit;
-    this._formElement = this._popupSelector.querySelector(".popup__form");
-    this._inputList = this._formElement.querySelectorAll(".popup__text");
-    this._submitButton = this._formElement.querySelector(".popup__submit");
-  }
+	constructor(popupSelector, handleProfileFormEdit) {
+		super(popupSelector);
+		this._handleProfileFormEdit = handleProfileFormEdit;
+		this._formElement = this._popupSelector.querySelector('.popup__form');
+		this._inputList = this._formElement.querySelectorAll('.popup__text');
+		this._submitButton = this._formElement.querySelector('.popup__submit-button');
+		this._permanentText = this._submitButton.textContent;
+	}
 
-  _getInputValues() {
-    this._formValues = {};
-    this._inputList.forEach(
-      (input) => (this._formValues[input.name] = input.value)
-    );
+	renderLoading(isLoading) {
+		if (isLoading) {
+			this._submitButton.textContent = 'Сохранение...';
+		} else {
+			this._submitButton.textContent = this._submitButtonText;
+		}
+	}
 
-    return this._formValues;
-  }
+	_getInputValues() {
+		this._formValues = {};
+		this._inputList.forEach((input) => (this._formValues[input.name] = input.value));
 
-  setEventListeners() {
-    super.setEventListeners();
+		return this._formValues;
+	}
 
-    this._formElement.addEventListener("submit", (evt) => {
-      evt.preventDefault();
-      this._handleProfileFormEdit(this._getInputValues());
-      this.closePopup();
-    });
-  }
+	setEventListeners() {
+		super.setEventListeners();
 
-  closePopup() {
-    super.closePopup();
-    this._formElement.reset();
-  }
+		this._formElement.addEventListener('submit', (evt) => {
+			evt.preventDefault();
+			this._handleProfileFormEdit(this._getInputValues());
+			this.closePopup();
+		});
+	}
+
+	closePopup() {
+		super.closePopup();
+		this._formElement.reset();
+	}
 }

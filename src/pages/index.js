@@ -2,7 +2,7 @@ import Card from '../components/Card.js';
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
-import PopupWithSubmit from '../components/PopupWithSubmit.js';
+import PopupWithConfirmation from '../components/ PopupWithConfirmation.js.js';
 import FormValidator from '../components/FormValidator.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
@@ -20,7 +20,6 @@ import {
 } from '../utils/constants.js';
 import '../pages/index.css';
 
-//экземпляр класса апи для работы с запросами на сервер
 const api = new Api({
 	baseUrl: 'https://nomoreparties.co/v1/cohort-42/',
 	headers: {
@@ -31,17 +30,15 @@ const api = new Api({
 
 let userId;
 
-const userServerData = api.getUserData();
-userServerData
-	.then((userData) => {
+Promise.all([ api.getUserData(), api.getCards() ])
+	.then(([ userData, cardData ]) => {
 		profileInfo.setUserInfo(userData);
 		userId = userData._id;
+		section.renderer(cardData);
 	})
 	.catch((err) => console.log(err));
 
-const cardServerData = api.getCards();
-cardServerData.then((cardData) => section.renderer(cardData)).catch((err) => console.log(err));
-
+// validation
 const formAddValidator = new FormValidator(config, popupAdd);
 formAddValidator.enableValidation();
 
@@ -52,10 +49,8 @@ const formAvatarValidator = new FormValidator(config, popupAvatarEdit);
 formAvatarValidator.enableValidation();
 
 const popupShowImage = new PopupWithImage('.popup_show');
-popupShowImage.setEventListeners();
 
-const popupDeleteCard = new PopupWithSubmit('.popup_delete');
-popupDeleteCard.setEventListeners();
+const popupDeleteCard = new PopupWithConfirmation('.popup_delete');
 
 const renderData = (data) => {
 	const card = new Card(
@@ -100,19 +95,23 @@ const renderData = (data) => {
 };
 
 const popupEditAvatar = new PopupWithForm('.popup_avatar', (data) => {
+	popupEditAvatar.renderLoading(true);
 	api
 		.editAvatar(data)
 		.then((data) => {
 			avatar.src = data.avatar;
 			popupEditAvatar.closePopup();
 		})
-		.catch((err) => console.log(err));
+		.catch((err) => console.log(err))
+		.finally(() => {
+			popupEditAvatar.renderLoading(false);
+		});
 });
-popupEditAvatar.setEventListeners();
 
 const section = new Section({ renderer: renderData }, '.elements');
 
 const popupCardAdd = new PopupWithForm('.popup_add', (cardData) => {
+	popupCardAdd.renderLoading(true);
 	const data = {
 		name: cardData.cardTitle,
 		link: cardData.cardLink
@@ -122,10 +121,11 @@ const popupCardAdd = new PopupWithForm('.popup_add', (cardData) => {
 		.then((data) => {
 			section.addItem(renderData(data)), popupCardAdd.closePopup();
 		})
-		.catch((err) => console.log(err));
+		.catch((err) => console.log(err))
+		.finally(() => {
+			popupCardAdd.renderLoading(false);
+		});
 });
-
-popupCardAdd.setEventListeners();
 
 const profileInfo = new UserInfo({
 	nameSelector: '.profile__name',
@@ -134,6 +134,7 @@ const profileInfo = new UserInfo({
 });
 
 const popupCardEdit = new PopupWithForm('.popup_edit', (data) => {
+	popupCardEdit.renderLoading(true);
 	api
 		.editUserInfo({
 			name: data.profileName,
@@ -142,10 +143,18 @@ const popupCardEdit = new PopupWithForm('.popup_edit', (data) => {
 		.then((data) => {
 			profileInfo.setUserInfo(data), popupCardEdit.closePopup();
 		})
-		.catch((err) => console.log(err));
+		.catch((err) => console.log(err))
+		.finally(() => {
+			popupCardEdit.renderLoading(false);
+		});
 });
 
+// listeners
+popupCardAdd.setEventListeners();
 popupCardEdit.setEventListeners();
+popupShowImage.setEventListeners();
+popupDeleteCard.setEventListeners();
+popupEditAvatar.setEventListeners();
 
 editButton.addEventListener('click', () => {
 	const getUserInfo = profileInfo.getUserInfo();
