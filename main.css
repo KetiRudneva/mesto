@@ -440,9 +440,38 @@ template {
 }
 
 .profile__avatar {
-  min-width: 120px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.profile__avatar-img {
+  width: 120px;
   height: 120px;
-  background-image: url(e8cce7f79eac62fdb3e3.svg);
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile__avatar-btn {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+  background-image: url(93c771f5f8582261951d.png);
+  background-color: rgba(0, 0, 0, 0.8);
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.profile__avatar-btn:hover {
+  opacity: 1;
 }
 
 .profile__info {
@@ -667,6 +696,20 @@ template {
   opacity: 0.5;
 }
 
+.elements__like-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.elements__like-counter {
+  font-size: 13px;
+  margin-top: 5px;
+  color: #000;
+  font-weight: 400;
+}
+
 .elements__like-active {
   background-image: url(fe17a515669479b1e649.svg);
 }
@@ -771,6 +814,7 @@ template {
   display: flex;
   flex-direction: column;
   max-width: 430px;
+  min-width: 330px;
   padding: 34px 36px 37px;
   background-color: #FFFFFF;
   border: 1px solid #000000;
