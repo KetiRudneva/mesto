@@ -81,10 +81,6 @@ export default class Card {
 		});
 	}
 
-	_clickButtonLike() {
-		this._buttonLike.classList.toggle('elements__like-active');
-	}
-
 	deleteCard() {
 		this._element.remove();
 		this._element = null;
