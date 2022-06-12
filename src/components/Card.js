@@ -34,10 +34,6 @@ export default class Card {
 		this._buttonLike.classList.remove('elements__like-active');
 	}
 
-	removeLike() {
-		this._likesCounter.textContent = this._likes.length;
-	}
-
 	setLikes(setLike) {
 		this._likes = setLike;
 		this._likesCounter.textContent = this._likes.length;
