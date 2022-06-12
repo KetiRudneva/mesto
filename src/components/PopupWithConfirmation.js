@@ -4,7 +4,7 @@ export default class PopupWithConfirmation extends Popup {
 	constructor(popupSelector, handleSubmit) {
 		super(popupSelector);
 		this._handleSubmit = handleSubmit;
-		this._popupDeleteBtn = this._popupSelector.querySelector('.popup__submit-delete');
+		this._popupDeleteBtn = this._popupElement.querySelector('.popup__submit-delete');
 	}
 
 	submitDelete(submit) {
