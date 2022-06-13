@@ -28,12 +28,9 @@ const api = new Api({
 	}
 });
 
-let userId;
-
 Promise.all([ api.getUserData(), api.getCards() ])
 	.then(([ userData, cardData ]) => {
 		profileInfo.setUserInfo(userData);
-		userId = userData._id;
 		section.renderer(cardData);
 	})
 	.catch((err) => console.log(err));
@@ -56,7 +53,7 @@ const renderData = (data) => {
 	const card = new Card(
 		{
 			data: data,
-			userId: userId,
+			userId: profileInfo.returnUserId(),
 			handleCardClick: () => {
 				popupShowImage.openPopup(data);
 			},
@@ -99,7 +96,7 @@ const popupEditAvatar = new PopupWithForm('.popup_avatar', (data) => {
 	api
 		.editAvatar(data)
 		.then((data) => {
-			avatar.src = data.avatar;
+			profileInfo.setUserInfo(data);
 			popupEditAvatar.closePopup();
 		})
 		.catch((err) => console.log(err))
