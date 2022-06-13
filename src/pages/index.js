@@ -162,7 +162,7 @@ editButton.addEventListener('click', () => {
 	nameInput.value = getUserInfo.profileName;
 	jobInput.value = getUserInfo.profileJob;
 
-	formAddValidator.deleteErrors();
+	formEditValidator.deleteErrors();
 	popupCardEdit.openPopup();
 });
 
@@ -172,6 +172,6 @@ addCardButton.addEventListener('click', () => {
 });
 
 popupAvatarEditButton.addEventListener('click', () => {
-	formAddValidator.deleteErrors();
+	formAvatarValidator.deleteErrors();
 	popupEditAvatar.openPopup();
 });
